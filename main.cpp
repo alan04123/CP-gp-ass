@@ -47,21 +47,39 @@ void setting() {
     cout << endl << "Option (1 - 5):";
     cin >> option;
     switch (option) {
-        case 1:cout << "Let PC start first?(Input 1 for yes 0 for no)"; cin >> pcstart; cout<<"setting complete"; setting();
-        case 2:cout << "Display PC's ships?;(Input 1 for yes 0 for no)"; cin >> displaypc; cout<<"setting complete";setting();
-        case 3:cout << "Set sea size(5 to 10)"; cin >> seasize;cout<<"setting complete"; setting();
-        case 4:
-            cout << "Carrier " << carrier << " change to ";
-            cin >> carrier;
-            cout << "Battleship " << battleship << " change to ";
-            cin >> battleship;
-            cout << "Submarine " << submarine << " change to ";
-            cin >> submarine;
-            cout << "Destroyer " << destroyer << " change to ";
-            cin >> destroyer;cout<<"setting complete"; setting();
+        case 1:	cout << "Let PC start first?(Input 1 for yes 0 for no)"; 
+		cin >> pcstart; cout<<"setting complete"; 
+		setting();
+		break;
+		    
+        case 2: cout << "Display PC's ships?;(Input 1 for yes 0 for no)"; 
+		cin >> displaypc; 
+		cout << "setting complete";
+		setting();
+		break;
+		    
+        case 3: cout << "Set sea size(5 to 10)"; 
+		cin >> seasize;
+		cout << "setting complete"; 
+		setting();
+		break;
+		    
+        case 4: cout << "Carrier " << carrier << " change to ";
+           	cin >> carrier;
+            	cout << "Battleship " << battleship << " change to ";
+            	cin >> battleship;
+            	cout << "Submarine " << submarine << " change to ";
+            	cin >> submarine;
+            	cout << "Destroyer " << destroyer << " change to ";
+            	cin >> destroyer;
+		cout << "setting complete"; 
+		setting();
+		break;
             
         case 5:break;
-        default:cout<<"Please input 1-5";setting();
+		    
+        default: cout << "Please input 1-5";
+		setting();
     }
     
 }
@@ -118,6 +136,38 @@ void game() {
     sea();
 }
 
+void instructions() {
+	// option 3: Instructions 
+	char back;
+
+
+
+
+
+	cout << "Please enter y to return to the Game Menu" << endl;
+	cin >> back;
+	if (back != 'y') instructions();
+}
+
+void credits() {
+	// option 4: Credits 
+	char back;
+
+	cout << "Student Full Name		Student ID		Class" << endl;
+	cout << "Choi Yiu Tung			16152710A		202C" << endl;
+	cout << "Lee Chung Chak			16070266A		202A" << endl;
+	cout << "Hung Kam Chung			16016760A		202B" << endl;
+	cout << "Li Man Fung			16091471A		202B" << endl;
+	cout << "Leung Kwan Ho			16071890A		202B" << endl;
+	cout << "Leung Man Hin			16137324A		202C" << endl;
+	cout << endl;
+
+	cout << "Please enter y to return to the Game Menu" << endl;
+	cin >> back;
+	if (back != 'y') credits();	
+}
+
+
 int main() {
 	char hi;
 	cin >> hi;
@@ -130,13 +180,26 @@ int main() {
     cout << endl << "Option (1 - 5):";
     cin >> choice;
     switch (choice) {
-		case 1:game(); main();
-		case 2:setting(); main();
-        case 3:;
-        case 4:;
-		case 5:break;
-        default: cout << "Please input 1-5";main();
-            
-    }
+	case 1:	game();
+		break;
+
+	case 2:	setting();
+		main();
+		break;
+
+	case 3:	instructions();
+		main();
+		break;
+
+	case 4:	credits();
+		main();
+		break;
+
+	case 5:	break;
+
+	default: cout << "Please input 1-5"; 
+		main();
+
+	}
     
 }
