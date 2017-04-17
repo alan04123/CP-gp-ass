@@ -5,9 +5,12 @@ using namespace std;
 
 //globle variables: settings
 int  seasize = 10, carrier = 1, battleship = 2, submarine = 3, destroyer = 4;
+int total_size;
+int total_seasize;
 char displaypc = 'n';
 char pcstart = 'y';
-char chart[10][10];
+const int row = 9, col = 9;
+int chart[row][col];
 
 char alphabet(int num) {//turn number into character
 	switch (num) {
@@ -67,7 +70,7 @@ void setting() {
 		if (pcstart == 'y') cout << "Player First" << endl;
 		else if (pcstart == 'n') cout << "Computer First" << endl;
 		else {
-			
+
 			do {
 				cout << "Please enter y or n only" << endl;
 				cout << "Please type here: ";
@@ -128,12 +131,24 @@ void setting() {
 		cout << "Please type here: ";
 		cin >> seasize;
 
+		total_size = carrier * 5 + battleship * 4 + submarine * 3 + destroyer * 2;
+
+		while (seasize * seasize <= total_size) {
+			cout << endl;
+			cout << "Sea size should be from 5 to 10 (each side) and large than total size of ships" << endl;
+			cout << "The total size of ships is " << total_size << endl;
+			cout << "Please type here: ";
+			cin >> seasize;
+		}
+
 		while (seasize != 5 && seasize != 6 && seasize != 7 && seasize != 8 && seasize != 9 && seasize != 10)
 		{
 			cout << endl;
-			cout << "Sea size should be from 5 to 10 " << endl;
+			cout << "Sea size should be from 5 to 10 (each side) and large than total size of ships" << endl;
+			cout << "The total size of ships is " << total_size << endl;
 			cout << "Please type here: ";
 			cin >> seasize;
+			
 		}
 
 		cout << endl;
@@ -147,21 +162,29 @@ void setting() {
 
 
 	case 4:
-		int total_size;
-
+		
 		system("cls");
 		cout << "[4] Number of ships" << endl;
 
-		cout << "Carrier from " << carrier << " change to ";
+		cout << left << setw(22) << "Type of ship" << "Number" << endl;
+		cout << setw(11) << "carrier" << "(size 5):" << right << setw(5) << carrier << endl;
+		cout << left << setw(11) << "Battleship" << "(size 4):" << right << setw(5) << battleship << endl;
+		cout << left << setw(11) << "Submarine" << "(size 3):" << right << setw(5) << submarine << endl;
+		cout << left << setw(11) << "Destroyer" << "(size 2):" << right << setw(5) << destroyer << endl;
+		cout << endl;
+
+		cout << "Change the number of ships" << endl;
+		cout << "Carrier" << " change to ";
 		cin >> carrier;
-		cout << "Battleship from " << battleship << " change to ";
+		cout << "Battleship" << " change to ";
 		cin >> battleship;
-		cout << "Submarine from " << submarine << " change to ";
+		cout << "Submarine" << " change to ";
 		cin >> submarine;
-		cout << "Destroyer from " << destroyer << " change to ";
+		cout << "Destroyer" << " change to ";
 		cin >> destroyer;
+
 		total_size = carrier * 5 + battleship * 4 + submarine * 3 + destroyer * 2;
-		
+
 		while (total_size > seasize * seasize)
 		{
 			system("cls");
@@ -179,9 +202,8 @@ void setting() {
 			cout << "Destroyer from " << destroyer << " change to ";
 			cin >> destroyer;
 			total_size = carrier * 5 + battleship * 4 + submarine * 3 + destroyer * 2;
-
-		}
-
+			}
+		
 		cout << endl;
 		cout << "state updated" << endl;
 		system("pause");
@@ -226,7 +248,8 @@ void sea() {
 	for (int c = 0; c < seasize; c++) {
 		cout << "--";
 	}
-	cout << "+";
+	cout << "+" << endl;
+
 }
 
 
@@ -250,7 +273,7 @@ void arrange() {
 
 void game() {
 	sea();
-
+	system("pause");
 }
 
 void instructions() {
